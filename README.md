@@ -11,7 +11,7 @@ Designed for commercial kitchens, industrial bakeries, and food manufacturing op
 
 ---
 
-### 🛠️ Tech Stack & Hardware
+### 🛠️ Tech Stack & Electronics
 * **Platform:** VEX IQ Gen 2
 * **Language:** C++ (VEXcode IQ)
 * **Actuation:** Smart motors and precision sensors for automated egg feeding, clamping, and clean shell-separation.
