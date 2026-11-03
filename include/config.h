@@ -3,8 +3,8 @@
 
 using namespace vex;
 
-// Calibrate the brain, motors, and sensors
+// Initialize the brain, motors, and sensors
 
-extern brain Brain;
-extern motor leftMotor;
-extern motor rightMotor;
+brain Brain;
+motor leftMotor = motor(PORT1, false);
+motor rightMotor = motor(PORT6, true);
