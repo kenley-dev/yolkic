@@ -1,22 +1,36 @@
 #include "vex.h"
 #include "config.h"
+#include "conveyor.h"
+#include "cracker.h"
+#include "feeder.h"
 
 int main() {
-    Brain.Screen.print("Testing Modular Workflow");
-    
-    timer timer1;
-    timer1.clear();
+    // Initial calibration
+    calibrateSensors();
 
-    // Spin both motors forward at 25% velocity for 5 seconds
-    leftMotor.spin(forward, 25, percent);
-    rightMotor.spin(forward, 25, percent);
+    // Turn robot on from a touch sensor click
+    while (!TouchSensor.pressing()) {}
+    while (TouchSensor.pressing()) {}
 
-    while (timer1.time(seconds) < 5) {}
-    
-    // Stop motors
-    leftMotor.stop();
-    rightMotor.stop();
-    
-    Brain.Screen.newLine();
-    Brain.Screen.print("Test Complete!");
+    turnRobotOn();
+
+    while (turnRobotOn()) {
+        // Check if cache is empty before starting a new cycle
+        if (checkCacheEmpty()) {
+            return 0;
+        }
+
+        // Step 1: Release Egg
+        releaseEgg();
+
+        // Step 2: Conveyor moves forward to the appropriate distance
+        advanceEgg();
+
+        //Step 3: Cracking function (feeds, clamps, cracks, and empties)
+        feedEgg();
+        clampEgg();
+        crackEgg();
+        emptyEgg();
+    }
 }
+
