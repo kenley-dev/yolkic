@@ -18,11 +18,11 @@ void moveBottomMotor(float angle){
   crackerBottomMotor.resetPosition();
   if (angle  < 0){
     crackerBottomMotor.spin(reverse, 10, percent);
-    while (bottomMotor.position(degrees) > angle){}
+    while (crackerBottomMotor.position(degrees) > angle){}
     crackerBottomMotor.stop(brake);
   } else{
     crackerBottomMotor.spin(forward, 10, percent);
-    while(topMotor.position(degrees) < angle){}
+    while(crackerBottomMotor.position(degrees) < angle){}
     crackerBottomMotor.stop(brake);
   }
 }
