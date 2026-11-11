@@ -5,15 +5,17 @@
 void calibrateSensors() {
     // Implementation for sensor calibration
     touchSensor.on();
-    bBrainInertial.resetRotation();
+    BrainInertial.resetRotation();
 }
 
 // Write a function to turn robot on
 void turnRobotOn() {
     // Implementation for turning the robot on
+    return 0;
 }
 
 // Write a function to turn robot off
 void turnRobotOff() {
     // Implementation for turning the robot off
+    return 0;
 }

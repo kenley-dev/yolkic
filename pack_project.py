@@ -17,10 +17,10 @@ TARGET = ROOT / "project.iqcpp"
 
 # Add modules back one at a time once the basic test works.
 # Headers go in dependency order; main.cpp always goes last.
-HEADERS = ["config.h"]
-SOURCES = ["main.cpp"]
-# HEADERS = ["config.h", "conveyor.h", "cracker.h", "feeder.h"]
-# SOURCES = ["config.cpp", "conveyor.cpp", "cracker.cpp", "feeder.cpp", "main.cpp"]
+HEADERS = ["config.h", "cracker.h"]
+SOURCES = ["config.cpp","cracker.cpp", "main.cpp"]
+# HEADERS = ["config.h", "cracker.h", "feeder.h"]
+# SOURCES = ["config.cpp", "cracker.cpp", "feeder.cpp", "main.cpp"]
 
 VEX_INCLUDE = re.compile(r'^\s*#include\s+"vex\.h"\s*$', re.M)
 LOCAL_INCLUDE = re.compile(r'^\s*#include\s+"[^"]+"\s*$', re.M)  # runs after vex.h is removed
