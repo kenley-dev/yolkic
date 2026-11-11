@@ -1,29 +1,28 @@
 #include "vex.h"
 #include "cracker.h"
 
-void moveTopMotor(float degrees){
+void moveTopMotor(float angle){
   crackerTopMotor.resetPosition();
-  if (degrees < 0){
+  if (angle < 0){
     crackerTopMotor.spin(reverse, 10, percent);
-    while (crackerTopMotor.position(degrees) > degrees){}
+    while (crackerTopMotor.position(degrees) > angle){}
     crackerTopMotor.stop(brake);
-  }else{
+  } else{
     crackerTopMotor.spin(forward, 10, percent);
-    while(crackerTopMotor.position(degrees) < degrees){}
+    while(crackerTopMotor.position(degrees) < angle){}
     crackerTopMotor.stop(brake);
   }
 }
 
-void moveBottomMotor(float degrees){
+void moveBottomMotor(float angle){
   crackerBottomMotor.resetPosition();
-  if (degrees  < 0){
+  if (angle  < 0){
     crackerBottomMotor.spin(reverse, 10, percent);
-    while (bottomMotor.position(degrees) > degrees){}
+    while (bottomMotor.position(degrees) > angle){}
     crackerBottomMotor.stop(brake);
-  }else{
+  } else{
     crackerBottomMotor.spin(forward, 10, percent);
-    while(topMotor.position(degrees) < degrees){}
+    while(topMotor.position(degrees) < angle){}
     crackerBottomMotor.stop(brake);
-
   }
 }
