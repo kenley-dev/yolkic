@@ -1,19 +1,29 @@
 #include "vex.h"
 #include "cracker.h"
 
-// Functions to process the egg: feeds, clamps, cracks, and empties
-void feedEgg() {
-    // Implementation for feeding the egg
+void moveTopMotor(float degrees){
+  crackerTopMotor.resetPosition();
+  if (degrees < 0){
+    crackerTopMotor.spin(reverse, 10, percent);
+    while (crackerTopMotor.position(degrees) > degrees){}
+    crackerTopMotor.stop(brake);
+  }else{
+    crackerTopMotor.spin(forward, 10, percent);
+    while(crackerTopMotor.position(degrees) < degrees){}
+    crackerTopMotor.stop(brake);
+  }
 }
 
-void clampEgg() {
-    // Implementation for clamping the egg
-}
+void moveBottomMotor(float degrees){
+  crackerBottomMotor.resetPosition();
+  if (degrees  < 0){
+    crackerBottomMotor.spin(reverse, 10, percent);
+    while (bottomMotor.position(degrees) > degrees){}
+    crackerBottomMotor.stop(brake);
+  }else{
+    crackerBottomMotor.spin(forward, 10, percent);
+    while(topMotor.position(degrees) < degrees){}
+    crackerBottomMotor.stop(brake);
 
-void crackEgg() {
-    // Implementation for cracking the egg
-}
-
-void emptyEgg() {
-    // Implementation for emptying the egg
+  }
 }

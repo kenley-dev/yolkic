@@ -7,30 +7,26 @@
 int main() {
     // Initial calibration
     calibrateSensors();
+    robotTimer.clear();
 
-    // Turn robot on from a touch sensor click
-    while (!TouchSensor.pressing()) {}
-    while (TouchSensor.pressing()) {}
+    while (robotTimer.time(seconds) <= 1) {} // waits 1 seconds before starting the cracker motors
 
-    turnRobotOn();
+    moveTopMotor(90); 
+    robotTimer.clear();
 
-    while (turnRobotOn()) {
-        // Check if cache is empty before starting a new cycle
-        if (checkCacheEmpty()) {
-            return 0;
-        }
+    while (robotTimer.time(seconds) <= 1) {}
 
-        // Step 1: Release Egg
-        releaseEgg();
+    moveTopMotor(-90);
+    robotTimer.clear();
 
-        // Step 2: Conveyor moves forward to the appropriate distance
-        advanceEgg();
+    while (robotTimer.time(seconds) <= 1) {}
 
-        //Step 3: Cracking function (feeds, clamps, cracks, and empties)
-        feedEgg();
-        clampEgg();
-        crackEgg();
-        emptyEgg();
-    }
+    moveBottomMotor(-90);
+    robotTimer.clear();
+
+    while (robotTimer.time(seconds) <= 1) {}
+
+    moveBottomMotor(90);
+    robotTimer.clear();
 }
 
