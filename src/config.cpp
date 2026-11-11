@@ -4,7 +4,7 @@
 // Function to calibrate all sensors and motors
 void calibrateSensors() {
     // Implementation for sensor calibration
-    touchSensor.on();
+    touchSensor.on(blue);
     BrainInertial.resetRotation();
 }
 
