@@ -20,8 +20,8 @@ int main() {
     if (checkCapsuleState()) {
         prepareCapsule();
     }
-    
-    Brain.programStop();
 
 }
+
+Brain.programStop();
 
