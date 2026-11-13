@@ -27,7 +27,9 @@ void moveBottomMotor(float angle){
   }
 }
 
-void moveCapsule() {
+void prepareCapsule() {
+
+    moveTopMotor(-90);
 
     while (capsuleTimer.time(seconds) <= CAPSULE_INTERVAL*4) {} // waits a quarter of a seconds before starting the cracker motors
 
