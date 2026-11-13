@@ -4,5 +4,7 @@
 using namespace vex;
 
 // Initialize all sensors, timer, and motors pertaining to the feeder system
+const double FEEDER_INTERVAL = 0.25;
 timer feederTimer;
 motor feederMotor(PORT3, false);
+optical feederSensor(PORT4);
