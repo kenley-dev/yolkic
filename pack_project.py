@@ -17,8 +17,8 @@ TARGET = ROOT / "project.iqcpp"
 
 # Add modules back one at a time once the basic test works.
 # Headers go in dependency order; main.cpp always goes last.
-HEADERS = ["config.h", "capsule.h", "feeder.h"]
-SOURCES = ["config.cpp","capsule.cpp", "feeder.cpp", "main.cpp"]
+HEADERS = ["config.h", "capsule.h", "feeder.h", "cracker.h"]
+SOURCES = ["config.cpp","capsule.cpp", "feeder.cpp", "cracker.cpp", "main.cpp"]
 # HEADERS = ["config.h", "cracker.h", "feeder.h"]
 # SOURCES = ["config.cpp", "cracker.cpp", "feeder.cpp", "main.cpp"]
 

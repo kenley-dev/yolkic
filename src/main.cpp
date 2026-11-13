@@ -14,14 +14,12 @@ int main() {
     robotTimer.clear();
 
     // open feeder and move capsule at the same time
-    openFeeder();
     moveTopMotor(90);
+    openFeeder();
     closeFeeder();
     if (checkCapsuleState()) {
         prepareCapsule();
-    }
-    
-    
+    }    
 
 }
 
