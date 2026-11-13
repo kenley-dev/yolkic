@@ -19,8 +19,6 @@ TARGET = ROOT / "project.iqcpp"
 # Headers go in dependency order; main.cpp always goes last.
 HEADERS = ["config.h", "capsule.h", "feeder.h", "cracker.h"]
 SOURCES = ["config.cpp","capsule.cpp", "feeder.cpp", "cracker.cpp", "main.cpp"]
-# HEADERS = ["config.h", "cracker.h", "feeder.h"]
-# SOURCES = ["config.cpp", "cracker.cpp", "feeder.cpp", "main.cpp"]
 
 VEX_INCLUDE = re.compile(r'^\s*#include\s+"vex\.h"\s*$', re.M)
 LOCAL_INCLUDE = re.compile(r'^\s*#include\s+"[^"]+"\s*$', re.M)  # runs after vex.h is removed
