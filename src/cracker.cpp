@@ -1,7 +1,7 @@
 #include "vex.h"
 #include "cracker.h"
 
-void crackEgg() {
+void crackEggKen() {
     // Implementation for cracking the egg
     crackerMotor.resetPosition();
 
@@ -16,4 +16,23 @@ void crackEgg() {
 
     crackerMotor.stop();
 
+}
+
+void crackEggSeb(){
+
+crackerMotor.resetPosition();
+crackerMotor.spin(forward, 100, degrees);
+
+while (crackerMotor.position(degrees) < 200){}
+
+crackerMotor.stop(brake);
+
+float movedDistance = crackerMotor.position(degrees);
+float distanceNeeded = 360 - movedDistance;
+
+crackerMotor.spin(forward, 25, percent);
+
+while (crackerMotor.position(degrees) < distanceNeeded){}
+
+crackerMotor.stop(brake);
 }
