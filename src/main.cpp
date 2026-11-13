@@ -21,7 +21,9 @@ int main() {
         prepareCapsule();
     }
 
-}
+    while (robotTimer.time(seconds) <= ROBOT_INTERVAL*30) {}
 
-Brain.programStop();
+    Brain.programStop();
+
+}
 
