@@ -53,7 +53,7 @@ void openFeeder() {
     
     feederMotor.spin(forward, 25, percent);
 
-    while (feederMotor.position(degrees) <= 90) {}
+    while (feederMotor.position(degrees) <= 105) {}
 
     feederMotor.stop(brake);
 
