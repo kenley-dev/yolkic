@@ -1,7 +1,7 @@
 """
 pack_project.py
 
-Merges your modular C++ files into the single source VEXcode IQ expects and
+Merges modular C++ files into a single source VEXcode IQ expects and
 writes it into project.iqcpp (the only file this script modifies).
 
 Run from the yolkic folder:  python pack_project.py
