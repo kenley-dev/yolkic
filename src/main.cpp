@@ -7,11 +7,10 @@
 int main() {
     // Initial calibration
     calibrateSensors();
+    robotTimer.clear();
     
     while (!touchSensor.pressing()) {}
     while (touchSensor.pressing()) {}
-
-    robotTimer.clear();
 
     // open feeder and move capsule at the same time
     moveTopMotor(90);
@@ -21,9 +20,9 @@ int main() {
         prepareCapsule();
     }
 
-    if (robotTimer.time(seconds) >= ROBOT_INTERVAL*30) { // runs the program for 15 seconds
-      Brain.programStop();
-    }
+    while (robotTimer.time(seconds) < ROBOT_INTERVAL*30) {}
+
+    Brain.programStop();
 
 }
 
