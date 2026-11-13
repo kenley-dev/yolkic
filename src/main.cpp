@@ -18,8 +18,22 @@ int main() {
     openFeeder();
     closeFeeder();
     if (checkCapsuleState()) {
-        prepareCapsule();
-    }    
+
+        robotTimer.clear();
+        moveTopMotor(-90);
+
+        while (robotTimer.time(seconds) <= ROBOT_INTERVAL*2) {} // waits a full second before starting the cracker motors
+
+        robotTimer.clear();
+        crackEgg();
+
+        while (robotTimer.time(seconds) <= ROBOT_INTERVAL*4) {}
+
+        moveBottomMotor(90);
+        robotTimer.clear();
+    }
+    
+    Brain.program.stop();
 
 }
 
