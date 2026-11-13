@@ -53,32 +53,6 @@ void moveBottomMotor(float angle){
   }
 }
 
-void prepareCapsule() {
-
-    moveTopMotor(-90);
-
-    while (capsuleTimer.time(seconds) <= CAPSULE_INTERVAL*4) {} // waits a quarter of a seconds before starting the cracker motors
-
-    moveTopMotor(90); 
-    capsuleTimer.clear();
-
-    while (capsuleTimer.time(seconds) <= CAPSULE_INTERVAL) {}
-
-    moveTopMotor(-90);
-    capsuleTimer.clear();
-
-    while (capsuleTimer.time(seconds) <= CAPSULE_INTERVAL) {}
-
-    moveBottomMotor(-90);
-    capsuleTimer.clear();
-
-    while (capsuleTimer.time(seconds) <= CAPSULE_INTERVAL) {}
-
-    moveBottomMotor(90);
-    capsuleTimer.clear();
-
-}
-
 // Reset capsule motors (reset to base position)
 void resetCapsuleMotors() {
 }
