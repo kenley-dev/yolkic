@@ -13,9 +13,7 @@ int main() {
     // Initial calibration
     int eggCount = 0;
     calibrateSensors();
-    robotTimer.clear();
-
-    touchSensor.on(red);    
+  
     Brain.Screen.clearScreen();
     Brain.Screen.setCursor(1, 1);
     Brain.Screen.print("Load all eggs into the capsule and press the button to start cracking!");
@@ -27,7 +25,11 @@ int main() {
 
     touchSensor.on(green);
 
-    while (!eStopActivated() && allEggsCracked(eggCount)) { // Main loop continues until emergency stop is activated or all eggs are cracked
+    Brain.Screen.clearScreen();
+    Brain.Screen.setCursor(1, 1);
+    Brain.Screen.print("Program started. Cracking eggs...");
+
+    while (!eStopActivated() && !allEggsCracked(eggCount)) { // Main loop continues until emergency stop is activated or all eggs are cracked
 
         // open feeder and move capsule at the same time
         moveTopMotor(90);
@@ -36,7 +38,7 @@ int main() {
 
         if (checkCapsuleState()) {
             moveTopMotor(-90);
-            crackEggKen();
+            crackEgg();
             eggCount -= 1;
             dropEgg();
         }

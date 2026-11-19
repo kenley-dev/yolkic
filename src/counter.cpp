@@ -4,10 +4,15 @@
 // Function to count the number of eggs
 void countEggs(int& eggCount) {
 
-    while (counterBumper.pressing()) {}
     while (!counterBumper.pressing()) {}
+    eggCount += 1;
+    while (counterBumper.pressing()) {}
 
-    eggCount++;
+    Brain.Screen.clearScreen();
+    Brain.Screen.setCursor(1, 1);
+    Brain.Screen.print("Eggs counted: %d", eggCount);
+    return true;
+
 }
 
 // Function to check if all eggs have been cracked
