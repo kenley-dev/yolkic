@@ -1,7 +1,7 @@
 #include "vex.h"
 #include "feeder.h"
 
-
+// try differnet brake styles for the feeder motor to see if it helps with the feeder motor not stopping at the right position
 void closeFeeder() {
     // Implementation for closing the feeder
     feederMotor.resetPosition();
@@ -9,9 +9,9 @@ void closeFeeder() {
 
     while (feederTimer.time(seconds) <= FEEDER_INTERVAL){} // waits one seconds before starting the feeder motor
 
-    feederMotor.spin(reverse, 25, percent);
+    feederMotor.spin(reverse, 15, percent);
 
-    while (feederMotor.position(degrees) >= -100) {}
+    while (feederMotor.position(degrees) >= -95) {}
 
     feederMotor.stop(brake);
 
@@ -25,9 +25,9 @@ void openFeeder() {
 
     while (feederTimer.time(seconds) <= FEEDER_INTERVAL) {} // waits one seconds before starting the feeder motor
     
-    feederMotor.spin(forward, 25, percent);
+    feederMotor.spin(forward, 15, percent);
 
-    while (feederMotor.position(degrees) <= 100) {}
+    while (feederMotor.position(degrees) <= 95) {}
 
     feederMotor.stop(brake);
 

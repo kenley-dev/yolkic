@@ -11,7 +11,6 @@ void countEggs(int& eggCount) {
     Brain.Screen.clearScreen();
     Brain.Screen.setCursor(1, 1);
     Brain.Screen.print("Eggs counted: %d", eggCount);
-    return true;
 
 }
 

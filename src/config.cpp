@@ -8,6 +8,7 @@ void calibrateSensors() {
     BrainInertial.resetRotation();
 }
 
+/* Does not work right now
 bool eStopActivated() {
     // Implementation for checking if the emergency stop is activated
 
@@ -27,4 +28,5 @@ bool eStopActivated() {
 
     return false;
 }
+    */
 
