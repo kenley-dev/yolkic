@@ -3,4 +3,4 @@
 
 using namespace vex;
 
-motor crackerMotor(PORT5, false);
+motor crackerMotor(PORT5, true);

@@ -17,7 +17,7 @@ TARGET = ROOT / "project.iqcpp"
 
 # Add modules back one at a time once the basic test works.
 # Headers go in dependency order; main.cpp always goes last.
-HEADERS = ["config.h", "capsule.h", "feeder.h", "counter.h", "cracker.h"]
+HEADERS = ["config.h", "capsule.h", "feeder.h", "cracker.h", "counter.h"]
 SOURCES = ["config.cpp","capsule.cpp", "feeder.cpp", "cracker.cpp", "counter.cpp", "main.cpp"]
 
 VEX_INCLUDE = re.compile(r'^\s*#include\s+"vex\.h"\s*$', re.M)

@@ -10,7 +10,7 @@ void crackEggKen() {
     while (crackerMotor.position(degrees) <= 180) {}
 
     crackerMotor.stop();
-    crackerMotor.spin(reverse, 15, percent);
+    crackerMotor.spin(reverse, 100, percent);
 
     while (crackerMotor.position(degrees) >= 0) {}
 
@@ -18,7 +18,7 @@ void crackEggKen() {
 
 }
 
-/*void crackEggSeb(){
+void crackEggSeb(){
 
 crackerMotor.resetPosition();
 crackerMotor.spin(forward, 100, degrees);
@@ -36,4 +36,3 @@ while (crackerMotor.position(degrees) < distanceNeeded){}
 
 crackerMotor.stop(brake);
 }
-*/

@@ -7,6 +7,6 @@ using namespace vex;
 const double CAPSULE_INTERVAL = 0.25;
 
 timer capsuleTimer;
-motor capsuleTopMotor(PORT6, false);
+motor capsuleTopMotor(PORT1, false);
 motor capsuleBottomMotor(PORT2, true);
 optical capsuleOptical(PORT4);

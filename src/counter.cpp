@@ -1,27 +1,13 @@
 #include "vex.h"
 #include "counter.h"
 
-// Function to count the number of eggs (FAULTY, PLEASE REWRITE)
+// Function to count the number of eggs
 void countEggs(int& eggCount) {
 
-    // Keep counting until the touch LED is pressed
-    while (!touchSensor.pressing()) {
+    while (counterBumper.pressing()) {}
+    while (!counterBumper.pressing()) {}
 
-        if (counterBumper.pressing()) {
-            eggCount++;
-
-            while (counterBumper.pressing()) { wait(5, msec); } // wait for release
-            wait(20, msec); // debounce
-
-            Brain.Screen.clearScreen();
-            Brain.Screen.setCursor(1, 1);
-            Brain.Screen.print("Eggs counted: %d", eggCount);
-        }
-
-        wait(5, msec);
-    }
-
-    while (touchSensor.pressing()) { wait(5, msec); } // wait for release
+    eggCount++;
 }
 
 // Function to check if all eggs have been cracked
