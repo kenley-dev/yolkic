@@ -9,7 +9,7 @@ void calibrateSensors() {
 }
 
 bool eStopActivated() {
-    if (touchSensor.pressing()) {
+    if (!touchSensor.pressing()) {
         while (touchSensor.pressing()) { wait(5, msec); } // wait for release
 
         Brain.Screen.clearScreen();
