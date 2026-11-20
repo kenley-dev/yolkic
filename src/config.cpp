@@ -8,25 +8,27 @@ void calibrateSensors() {
     BrainInertial.resetRotation();
 }
 
-/* Does not work right now
+void endProgram() {
+    touchSensor.off();
+    Brain.Screen.clearScreen();
+    Brain.Screen.setCursor(1, 1);
+    Brain.Screen.print("Program stopped.");
+    capsuleTopMotor.stop(brake);
+    capsuleBottomMotor.stop(brake);
+    feederMotor.stop(brake);
+    crackerMotor.stop(brake);
+}
+
 bool eStopActivated() {
-    // Implementation for checking if the emergency stop is activated
-
-    robotTimer.clear();
-
-    while (robotTimer.time(seconds) < ROBOT_INTERVAL/5.0) { // checks for 0.1 second if the emergency stop is activated
-
-        while (!touchSensor.pressing()) {}
-        while (touchSensor.pressing()) {}
-            
+    if (touchSensor.pressing()) {
+        stopAllMotors();
+        touchSensor.on(red);
         Brain.Screen.clearScreen();
         Brain.Screen.setCursor(1, 1);
         Brain.Screen.print("Emergency Stop Activated!");
+        Brain.programStop();   // ends the program right here, from inside any loop
         return true;
-        
     }
-
     return false;
 }
-    */
 

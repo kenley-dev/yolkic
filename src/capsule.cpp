@@ -1,5 +1,6 @@
 #include "vex.h"
 #include "capsule.h"
+#include "config.h"
 
 bool checkCapsuleState() {
 
@@ -31,11 +32,11 @@ void moveTopMotor(float angle){
   capsuleTopMotor.resetPosition();
   if (angle < 0){
     capsuleTopMotor.spin(reverse, 5, percent);
-    while (capsuleTopMotor.position(degrees) > angle){}
+    while (capsuleTopMotor.position(degrees) > angle){eStopActivated();}
     capsuleTopMotor.stop(brake);
   } else{
     capsuleTopMotor.spin(forward, 5, percent);
-    while(capsuleTopMotor.position(degrees) < angle){}
+    while(capsuleTopMotor.position(degrees) < angle){eStopActivated();}
     capsuleTopMotor.stop(brake);
   }
 }
@@ -44,11 +45,11 @@ void moveBottomMotor(float angle){
   capsuleBottomMotor.resetPosition();
   if (angle  < 0){
     capsuleBottomMotor.spin(reverse, 5, percent);
-    while (capsuleBottomMotor.position(degrees) > angle){}
+    while (capsuleBottomMotor.position(degrees) > angle){eStopActivated();}
     capsuleBottomMotor.stop(brake);
   } else{
     capsuleBottomMotor.spin(forward, 5, percent);
-    while(capsuleBottomMotor.position(degrees) < angle){}
+    while(capsuleBottomMotor.position(degrees) < angle){eStopActivated();}
     capsuleBottomMotor.stop(brake);
   }
 }
@@ -58,7 +59,7 @@ void dropEgg() {
     moveBottomMotor(-90);
     capsuleTimer.clear();
 
-    while (capsuleTimer.time(seconds) <= CAPSULE_INTERVAL) {}
+    while (capsuleTimer.time(seconds) <= CAPSULE_INTERVAL) {eStopActivated();}
 
     moveBottomMotor(90);
     capsuleTimer.clear();
