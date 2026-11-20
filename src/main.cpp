@@ -41,6 +41,8 @@ int main() {
             crackEgg();
             eggCount -= 1;
             dropEgg();
+        } else {
+            moveTopMotor(-90);
         }
 
     }

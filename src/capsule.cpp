@@ -11,7 +11,7 @@ bool checkCapsuleState() {
         Brain.Screen.clearScreen();
         Brain.Screen.setCursor(1, 1);
         
-        if (capsuleOptical.hue() >= 10 && capsuleOptical.hue() <= 30) { // checks if the color detected is white (hue value between 5 and 20)
+        if (capsuleOptical.hue() >= 10 || capsuleOptical.hue() <= 30) { // checks if the color detected is white (hue value between 5 and 20)
             Brain.Screen.print("Object detected!");
             return true; // Egg detected, capsule is not empty
 
