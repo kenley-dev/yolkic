@@ -21,7 +21,7 @@ void endProgram() {
 
 bool eStopActivated() {
     if (touchSensor.pressing()) {
-        stopAllMotors();
+        endProgram();
         touchSensor.on(red);
         Brain.Screen.clearScreen();
         Brain.Screen.setCursor(1, 1);
