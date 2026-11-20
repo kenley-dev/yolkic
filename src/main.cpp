@@ -40,9 +40,16 @@ int main() {
             moveTopMotor(-75);
             crackEgg();
             eggCount -= 1;
+            Brain.Screen.clearScreen();
+            Brain.Screen.setCursor(1, 1);
+            Brain.Screen.print("Eggs left: %d", eggCount);
             dropEgg();
         } else {
             moveTopMotor(-75);
+            eggCount -= 1;
+            Brain.Screen.clearScreen();
+            Brain.Screen.setCursor(1, 1);
+            Brain.Screen.print("Eggs left: %d", eggCount);
         }
 
     }
