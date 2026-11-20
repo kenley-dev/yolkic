@@ -7,11 +7,13 @@ bool checkCapsuleState() {
     capsuleOptical.setLight(ledState::on);
     capsuleTimer.clear();
     
-    while (capsuleTimer.time(seconds) < CAPSULE_INTERVAL*5) { // checks for 10 seconds if the capsule is empty or not
+    while (capsuleTimer.time(seconds) < CAPSULE_INTERVAL*8) { // checks for 2 seconds if the capsule is empty or not
         Brain.Screen.clearScreen();
         Brain.Screen.setCursor(1, 1);
         
-        if (capsuleOptical.hue() >= 10 || capsuleOptical.hue() <= 30) { // checks if the color detected is white (hue value between 5 and 20)
+        wait(1, seconds);
+
+        if (capsuleOptical.hue() >= 10 && capsuleOptical.hue() <= 30) { // checks if the color detected is white (hue value between 5 and 20)
             Brain.Screen.print("Object detected!");
             return true; // Egg detected, capsule is not empty
 
@@ -21,6 +23,12 @@ bool checkCapsuleState() {
 
         wait(20, msec);
     }
+
+    Brain.Screen.clearScreen();
+    Brain.Screen.setCursor(1, 1);
+    Brain.Screen.print("Capsule is empty!");
+    return false; // No egg detected, capsule is empty
+}
 
     Brain.Screen.clearScreen();
     Brain.Screen.setCursor(1, 1);
