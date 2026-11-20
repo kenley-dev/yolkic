@@ -24,7 +24,7 @@ void openFeeder() {
     feederMotor.resetPosition();
     feederTimer.clear();
 
-    while (feederTimer.time(seconds) <= FEEDER_INTERVAL) {} // waits one seconds before starting the feeder motor
+    while (feederTimer.time(seconds) <= FEEDER_INTERVAL) {eStopActivated();} // waits one seconds before starting the feeder motor
     
     feederMotor.spin(forward, 15, percent);
 

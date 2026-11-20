@@ -8,11 +8,11 @@ void calibrateSensors() {
     BrainInertial.resetRotation();
 }
 
-void endProgram() {
+void stopAllMotors() {
     touchSensor.off();
     Brain.Screen.clearScreen();
     Brain.Screen.setCursor(1, 1);
-    Brain.Screen.print("Program stopped.");
+    Brain.Screen.print("Motors stopped.");
     capsuleTopMotor.stop(brake);
     capsuleBottomMotor.stop(brake);
     feederMotor.stop(brake);
@@ -21,12 +21,12 @@ void endProgram() {
 
 bool eStopActivated() {
     if (touchSensor.pressing()) {
-        endProgram();
+        stopAllMotors();
         touchSensor.on(red);
         Brain.Screen.clearScreen();
         Brain.Screen.setCursor(1, 1);
         Brain.Screen.print("Emergency Stop Activated!");
-        Brain.programStop();   // ends the program right here, from inside any loop
+        Brain.programStop();  // ends the program right here, from inside any loop
         return true;
     }
     return false;

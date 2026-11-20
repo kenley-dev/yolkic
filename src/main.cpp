@@ -16,23 +16,20 @@ int main() {
   
     Brain.Screen.clearScreen();
     Brain.Screen.setCursor(1, 1);
-    Brain.Screen.print("Load all eggs into the capsule and press the button to start cracking!");
-    countEggs(eggCount);
-
-
-    while (!touchSensor.pressing()) {} // Wait for the touch sensor to be released before starting the main loop
-    while (touchSensor.pressing()) {}
+    Brain.Screen.print("Load all eggs into the capsule and press");
+    Brain.Screen.setCursor(1,2);
+    Brain.Screen.print("the Touch LED to start cracking!")
+    
+    countEggs(eggCount); // Returns the number of eggs after the touch sensor is clicked
 
     touchSensor.on(green);
 
     Brain.Screen.clearScreen();
     Brain.Screen.setCursor(1, 1);
-    Brain.Screen.print("Program started. Cracking eggs...");
+    Brain.Screen.print("Program started. Cracking eggs... ");
 
     while (!allEggsCracked(eggCount)) { // Main loop continues until all eggs are cracked
-        
-        if (eStopActivated()) {endProgram();}
-        
+
         moveTopMotor(90);
         openFeeder();
         closeFeeder();
@@ -46,7 +43,8 @@ int main() {
 
     }
 
-    endProgram();
+    stopAllMotors();
+    Brain.programStop();
 
 }
 
