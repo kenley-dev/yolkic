@@ -30,12 +30,6 @@ bool checkCapsuleState() {
     return false; // No egg detected, capsule is empty
 }
 
-    Brain.Screen.clearScreen();
-    Brain.Screen.setCursor(1, 1);
-    Brain.Screen.print("Capsule is empty!");
-    return false; // No egg detected, capsule is empty
-}
-
 void moveTopMotor(float angle){
   capsuleTopMotor.resetPosition();
   if (angle < 0){
