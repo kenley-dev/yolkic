@@ -26,7 +26,9 @@ int main() {
 
     Brain.Screen.clearScreen();
     Brain.Screen.setCursor(1, 1);
-    Brain.Screen.print("Program started. Cracking eggs... ");
+    Brain.Screen.print("Program started. Cracking eggs...");
+    Brain.Screen.setCursor(2, 1);
+    Brain.Screen.print("Tap the touch LED for an e-stop.");
 
     while (!allEggsCracked(eggCount)) { // Main loop continues until all eggs are cracked
 
