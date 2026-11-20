@@ -8,7 +8,7 @@ void closeFeeder() {
     feederMotor.resetPosition();
     feederTimer.clear();
 
-    while (feederTimer.time(seconds) <= FEEDER_INTERVAL){} // waits one seconds before starting the feeder motor
+    while (feederTimer.time(seconds) <= FEEDER_INTERVAL){eStopActivated();} // waits one seconds before starting the feeder motor
 
     feederMotor.spin(reverse, 15, percent);
 

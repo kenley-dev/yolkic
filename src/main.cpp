@@ -17,8 +17,8 @@ int main() {
     Brain.Screen.clearScreen();
     Brain.Screen.setCursor(1, 1);
     Brain.Screen.print("Load all eggs into the capsule and press");
-    Brain.Screen.setCursor(1,2);
-    Brain.Screen.print("the Touch LED to start cracking!")
+    Brain.Screen.setCursor(2,1);
+    Brain.Screen.print("the Touch LED to start cracking!");
     
     countEggs(eggCount); // Returns the number of eggs after the touch sensor is clicked
 
