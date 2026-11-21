@@ -2,34 +2,67 @@
 #include "feeder.h"
 #include "config.h"
 
-// try differnet brake styles for the feeder motor to see if it helps with the feeder motor not stopping at the right position
 void closeFeeder() {
-    // Implementation for closing the feeder
-    feederMotor.resetPosition();
+
     feederTimer.clear();
 
-    while (feederTimer.time(seconds) <= FEEDER_INTERVAL){eStopActivated();} // waits one seconds before starting the feeder motor
+    // quarter of a second time interval for estop to be registered
+    while (feederTimer.time(seconds) <= FEEDER_INTERVAL){eStopActivated();} 
 
     feederMotor.spin(reverse, 15, percent);
 
-    while (feederMotor.position(degrees) >= -95) {eStopActivated();}
+    while (feederMotor.position(degrees) >= 0) {eStopActivated();}
 
-    feederMotor.stop(brake);
+    feederMotor.stop(hold);
 
 
 }
 
-void openFeeder() {
-    // Implementation for opening the feeder
+void lowerFeeder(){
     feederMotor.resetPosition();
     feederTimer.clear();
 
-    while (feederTimer.time(seconds) <= FEEDER_INTERVAL) {eStopActivated();} // waits one seconds before starting the feeder motor
-    
-    feederMotor.spin(forward, 15, percent);
+    while (feederTimer.time(seconds) <= FEEDER_INTERVAL) {eStopActivated();}
 
-    while (feederMotor.position(degrees) <= 95) {eStopActivated();}
+    feederMotor.spin(forward, 30, percent);
 
-    feederMotor.stop(brake);
+    while(feederMotor.position(degrees) <= 40) {eStopActivated();}
+
+    feederMotor.stop(hold);
+
+}
+
+void jitterFeeder()
+{
+
+  feederMotor.spin(forward, 10, percent);
+
+  while(feederMotor.position(degrees) <= 90) {eStopActivated();};
+
+  feederMotor.stop(hold);
+
+  wait(0.1, seconds);
+
+  feederMotor.spin(reverse, 30, percent);
+
+  while(feederMotor.position(degrees) >= 70) {eStopActivated();}
+
+  feederMotor.stop(hold);
+
+}
+
+void releaseEgg() {
+
+  lowerFeeder();
+
+  wait(1, seconds);
+
+  jitterFeeder();
+
+  wait(2, seconds);
+
+  jitterFeeder();
+
+  closeFeeder();
 
 }
