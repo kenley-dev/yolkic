@@ -33,8 +33,7 @@ int main() {
     while (!allEggsCracked(eggCount)) { // Main loop continues until all eggs are cracked
 
         moveTopMotor(75);
-        openFeeder();
-        closeFeeder();
+        releaseEgg();
 
         if (checkCapsuleState()) {
             moveTopMotor(-75);
