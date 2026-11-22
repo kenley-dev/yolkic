@@ -45,7 +45,7 @@ int main() {
         // releases one egg from the feeder
         releaseEgg();
 
-        // using the optical sensor, checks if an egg has been properly placed in the capsule
+        // checks if an egg has been properly placed in the capsule
         if (checkCapsuleState()) {
             // if it has, the capsule closes to securly hold the egg in place
             moveTopCapsuleMotor(-75);

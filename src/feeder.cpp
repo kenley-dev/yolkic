@@ -27,7 +27,7 @@ void openFeeder() {
 
     while (feederTimer.time(seconds) <= FEEDER_INTERVAL) {eStopActivated();}
 
-    feederMotor.spin(forward, 50, percent);
+    feederMotor.spin(forward, 15, percent);
 
     while(feederMotor.position(degrees) <= 80) {eStopActivated();}
 
