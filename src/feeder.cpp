@@ -2,7 +2,9 @@
 #include "feeder.h"
 #include "config.h"
 
+// A function to close the feeder
 void closeFeeder() {
+
     feederMotor.resetPosition();
     feederTimer.clear();
 
@@ -15,10 +17,11 @@ void closeFeeder() {
 
     feederMotor.stop(hold);
 
-
 }
 
-void lowerFeeder(){
+// A function to open the feeder 80 degrees
+void openFeeder() {
+
     feederMotor.resetPosition();
     feederTimer.clear();
 
@@ -32,8 +35,8 @@ void lowerFeeder(){
 
 }
 
-void jitterFeeder()
-{
+// A function to jitter the feeder platform so as to release only one egg
+void jitterFeeder() {
 
     feederMotor.spin(forward, 10, percent);
 
@@ -51,9 +54,10 @@ void jitterFeeder()
 
 }
 
+// A function that automates the release of a singular egg
 void releaseEgg() {
 
-  lowerFeeder();
+  openFeeder();
 
   wait(1, seconds);
 

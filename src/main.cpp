@@ -7,45 +7,66 @@
 
 int main() {
     
-    while (!Brain.buttonCheck.pressing()) {} // Waitting for the user to press the button to start the program
+    // Waitting for the user to click the brain check button before starting the program
+    while (!Brain.buttonCheck.pressing()) {}
     while (Brain.buttonCheck.pressing()) {}
 
-    // Initial calibration
+    // Initial calibration of sensors and an egg coutning variable
     int eggCount = 0;
     calibrateSensors();
-  
+    
+    // Prompts the user to start loading eggs and to tap the touch led to start the cracking process
     Brain.Screen.clearScreen();
     Brain.Screen.setCursor(1, 1);
     Brain.Screen.print("Load all eggs into the capsule and press");
     Brain.Screen.setCursor(2,1);
     Brain.Screen.print("the Touch LED to start cracking!");
     
-    countEggs(eggCount); // Returns the number of eggs after the touch sensor is clicked
+    // Tracks the number of eggs placed into the feeder, the program will not proceed
+    // further until the user has finsihed loading eggs and tapped the touch led
+    countEggs(eggCount);
 
+    // Informs the user that they have finished loading their eggs and that the cracking will begin
     touchSensor.on(green);
-
     Brain.Screen.clearScreen();
     Brain.Screen.setCursor(1, 1);
     Brain.Screen.print("Program started. Cracking eggs...");
+
+    // Informs user that the touch led can be tapped to stop teh prgram at any time
     Brain.Screen.setCursor(2, 1);
     Brain.Screen.print("Tap the touch LED for an e-stop.");
 
-    while (!allEggsCracked(eggCount)) { // Main loop continues until all eggs are cracked
+    // Main loop continues until all eggs are cracked
+    while (!allEggsCracked(eggCount)) {
+        
+        // opens the egg capsule
+        moveTopCapsuleMotor(75);
 
-        moveTopMotor(75);
+        // releases one egg from the feeder
         releaseEgg();
 
+        // using the optical sensor, checks if an egg has been properly placed in the capsule
         if (checkCapsuleState()) {
-            moveTopMotor(-75);
+            // if it has, the capsule closes to securly hold the egg in place
+            moveTopCapsuleMotor(-75);
+
+            // the egg is cracked
             crackEgg();
+
+            // the egg count decrease by one, and the status of eggs left is printed for the user convience
             eggCount -= 1;
             Brain.Screen.clearScreen();
             Brain.Screen.setCursor(1, 1);
             Brain.Screen.print("Eggs left: %d", eggCount);
-            dropEgg();
+
+            // lastly, the contents of the egg are emptied through a filter and into a bowl
+            emptyContents();
+
         } else {
-            moveTopMotor(-75);
-            eggCount -= 1;
+            // otherwise, reset the position of the capsule to prepare for the next egg
+            moveTopCapsuleMotor(-75);
+
+            // even in failure, the egg count decrease by one, and the status of eggs left is printed
             Brain.Screen.clearScreen();
             Brain.Screen.setCursor(1, 1);
             Brain.Screen.print("Eggs left: %d", eggCount);
@@ -53,6 +74,7 @@ int main() {
 
     }
 
+    // once all eggs have been cracked, all motors will stop and the program will be terminated
     stopAllMotors();
     Brain.programStop();
 

@@ -2,8 +2,9 @@
 #include "cracker.h"
 #include "config.h"
 
+// A function that automates teh egg-cracking process
 void crackEgg() {
-    // Implementation for cracking the egg
+
     crackerMotor.resetPosition();
 
     crackerMotor.spin(forward, 100, percent);

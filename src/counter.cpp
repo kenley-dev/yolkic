@@ -2,16 +2,21 @@
 #include "counter.h"
 #include "config.h"
 
-// Function to count the number of eggs
+// Versitle function that takes a variable as a reference and tracks the number of eggs placed into the feeder
 void countEggs(int& eggCount) {
-    while (!touchSensor.pressing()) {          // touch LED = "done loading"
+
+    while (!touchSensor.pressing()) {
+        
         if (counterBumper.pressing()) {
             eggCount++;
+
             while (counterBumper.pressing()) { wait(10, msec); }
+
             Brain.Screen.clearScreen();
             Brain.Screen.setCursor(1, 1);
             Brain.Screen.print("Eggs counted: %d", eggCount);
         }
+        
         wait(10, msec);
     }
     
@@ -19,13 +24,13 @@ void countEggs(int& eggCount) {
 
 }
 
-// Function to check if all eggs have been cracked
+// Boolean function that checks if all the eggs have been cracked, used as a terminating condition
 bool allEggsCracked(int eggCount) {
 
-    // Logic to determine if all eggs have been cracked
     if (eggCount == 0) {
         return true;
     } else {
         return false;
     }
+
 }

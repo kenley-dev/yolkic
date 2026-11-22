@@ -4,7 +4,7 @@
 
 bool checkCapsuleState() {
 
-    capsuleOptical.setLight(ledState::on);
+    capsuleOptical.setLight(ledState::on); // ensures we can detect white
     capsuleTimer.clear();
     
     while (capsuleTimer.time(seconds) < CAPSULE_INTERVAL*8) { // checks for 2 seconds if the capsule is empty or not
@@ -13,12 +13,13 @@ bool checkCapsuleState() {
         
         wait(1, seconds);
 
-        if (capsuleOptical.hue() >= 10 && capsuleOptical.hue() <= 30) { // checks if the color detected is white (hue value between 5 and 20)
+        // Checks for a white egg with a hue range of 10 to 30
+        if (capsuleOptical.hue() >= 10 && capsuleOptical.hue() <= 30) { 
             Brain.Screen.print("Object detected!");
-            return true; // Egg detected, capsule is not empty
+            return true;
 
         } else {
-            Brain.Screen.print("Not white."); // No egg detected
+            Brain.Screen.print("Not a white egg");
         }
 
         wait(20, msec);
@@ -27,43 +28,64 @@ bool checkCapsuleState() {
     Brain.Screen.clearScreen();
     Brain.Screen.setCursor(1, 1);
     Brain.Screen.print("Capsule is empty!");
-    return false; // No egg detected, capsule is empty
+    return false;
 }
 
-void moveTopMotor(float angle){
+// Versitile function that takes an angle as a parameter and moves the top capsule motor accordingly
+void moveTopCapsuleMotor(float angle) {
   capsuleTopMotor.resetPosition();
-  if (angle < 0){
+
+  if (angle < 0) {
+
     capsuleTopMotor.spin(reverse, 5, percent);
+
     while (capsuleTopMotor.position(degrees) > angle){eStopActivated();}
+
     capsuleTopMotor.stop(brake);
-  } else{
+
+  } else {
+
     capsuleTopMotor.spin(forward, 5, percent);
+
     while(capsuleTopMotor.position(degrees) < angle){eStopActivated();}
+
     capsuleTopMotor.stop(brake);
+
   }
 }
 
-void moveBottomMotor(float angle){
+// Versitile function that takes an angle as a parameter and moves the top capsule motor accordingly
+void moveBottomCapsuleMotor(float angle) {
   capsuleBottomMotor.resetPosition();
-  if (angle  < 0){
+
+  if (angle  < 0) {
+
     capsuleBottomMotor.spin(reverse, 5, percent);
+
     while (capsuleBottomMotor.position(degrees) > angle){eStopActivated();}
+
     capsuleBottomMotor.stop(brake);
-  } else{
+
+  } else {
+
     capsuleBottomMotor.spin(forward, 5, percent);
+
     while(capsuleBottomMotor.position(degrees) < angle){eStopActivated();}
+
     capsuleBottomMotor.stop(brake);
+
   }
 }
 
-void dropEgg() {
+// Function that uses the previous helper functions to automate the egg-empting process
+void emptyContents() {
 
-    moveBottomMotor(-90);
+    moveBottomCapsuleMotor(-90);
     capsuleTimer.clear();
 
     while (capsuleTimer.time(seconds) <= CAPSULE_INTERVAL) {eStopActivated();}
 
-    moveBottomMotor(90);
+    moveBottomCapsuleMotor(90);
     capsuleTimer.clear();
 
 }

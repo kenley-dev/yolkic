@@ -1,13 +1,13 @@
 #include "vex.h"
 #include "config.h"
 
-// Function to calibrate all sensors and motors
+// Function to calibrate all sensors needed for start-up or shut-down
 void calibrateSensors() {
-    // Implementation for sensor calibration
     touchSensor.on(red);
     BrainInertial.resetRotation();
 }
 
+// Function to shut-dwon all motors and sensors
 void stopAllMotors() {
     touchSensor.off();
     Brain.Screen.clearScreen();
@@ -19,16 +19,19 @@ void stopAllMotors() {
     crackerMotor.stop(brake);
 }
 
+// Boolean function used to check if the e-stop button has been pressed to initate a shut-down procedure
 bool eStopActivated() {
+
     if (touchSensor.pressing()) {
         stopAllMotors();
         touchSensor.on(red);
         Brain.Screen.clearScreen();
         Brain.Screen.setCursor(1, 1);
         Brain.Screen.print("Emergency Stop Activated!");
-        Brain.programStop();  // ends the program right here, from inside any loop
+        Brain.programStop();
         return true;
     }
+
     return false;
 }
 
