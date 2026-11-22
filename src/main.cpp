@@ -53,7 +53,7 @@ int main() {
             // the egg is cracked
             crackEgg();
 
-            // the egg count decrease by one, and the status of eggs left is printed for the user convience
+            // the egg count decreases by one, and the status of eggs left is printed for the user convience
             eggCount -= 1;
             Brain.Screen.clearScreen();
             Brain.Screen.setCursor(1, 1);
@@ -66,7 +66,7 @@ int main() {
             // otherwise, reset the position of the capsule to prepare for the next egg
             moveTopCapsuleMotor(-75);
 
-            // even in failure, the egg count decrease by one, and the status of eggs left is printed
+            // even in failure, the egg count decreases by one, and the status of eggs left is printed
             Brain.Screen.clearScreen();
             Brain.Screen.setCursor(1, 1);
             Brain.Screen.print("Eggs left: %d", eggCount);
