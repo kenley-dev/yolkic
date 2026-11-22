@@ -3,7 +3,7 @@
 #include "config.h"
 
 void closeFeeder() {
-
+    feederMotor.resetPosition();
     feederTimer.clear();
 
     // quarter of a second time interval for estop to be registered
@@ -11,7 +11,7 @@ void closeFeeder() {
 
     feederMotor.spin(reverse, 15, percent);
 
-    while (feederMotor.position(degrees) >= 0) {eStopActivated();}
+    while (feederMotor.position(degrees) >= -70) {eStopActivated();}
 
     feederMotor.stop(hold);
 
@@ -24,9 +24,9 @@ void lowerFeeder(){
 
     while (feederTimer.time(seconds) <= FEEDER_INTERVAL) {eStopActivated();}
 
-    feederMotor.spin(forward, 30, percent);
+    feederMotor.spin(forward, 50, percent);
 
-    while(feederMotor.position(degrees) <= 40) {eStopActivated();}
+    while(feederMotor.position(degrees) <= 80) {eStopActivated();}
 
     feederMotor.stop(hold);
 
@@ -35,19 +35,19 @@ void lowerFeeder(){
 void jitterFeeder()
 {
 
-  feederMotor.spin(forward, 10, percent);
+    feederMotor.spin(forward, 10, percent);
 
-  while(feederMotor.position(degrees) <= 90) {eStopActivated();};
+    while(feederMotor.position(degrees) <= 90) {eStopActivated();};
 
-  feederMotor.stop(hold);
+    feederMotor.stop(hold);
 
-  wait(0.1, seconds);
+    wait(0.1, seconds);
 
-  feederMotor.spin(reverse, 30, percent);
+    feederMotor.spin(reverse, 30, percent);
 
-  while(feederMotor.position(degrees) >= 70) {eStopActivated();}
+    while(feederMotor.position(degrees) >= 70) {eStopActivated();}
 
-  feederMotor.stop(hold);
+    feederMotor.stop(hold);
 
 }
 
@@ -56,10 +56,6 @@ void releaseEgg() {
   lowerFeeder();
 
   wait(1, seconds);
-
-  jitterFeeder();
-
-  wait(2, seconds);
 
   jitterFeeder();
 
