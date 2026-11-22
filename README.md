@@ -7,7 +7,7 @@ Welcome to the official repository for **Yolkic**, Waterloo's first-ever automat
 ---
 
 ### ⚙️ About the Project
-Designed for commercial kitchens, industrial bakeries, and food manufacturing operations that process thousands of eggs daily, Yolkic eliminates labor bottlenecks, reduces shell-contamination risks, and maximizes yield. By combining precision mechatronics with automated handling, our system **cracks the code** to industrial-scale breakfast prep.
+Designed for commercial kitchens, industrial bakeries, and food manufacturing operations that process thousands of eggs daily, Yolkic eliminates labor bottlenecks, reduces shell-contamination risks, and maximizes yield. By combining precision mechatronics with automated handling, our system "**cracks the code**" to industrial-scale breakfast prep.
 
 ---
 
