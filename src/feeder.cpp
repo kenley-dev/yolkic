@@ -40,9 +40,9 @@ void closeFeeder() {
 // A function to jitter the feeder platform so as to release only one egg
 void jitterFeeder() {
 
-    // go up to 110 degrees
+    // go up to 95 degrees
     feederMotor.spin(forward, 10, percent);
-    while (feederMotor.position(degrees) <= 110) { eStopActivated(); }
+    while (feederMotor.position(degrees) <= 95) { eStopActivated(); }
 
     feederMotor.stop(brake);
 
