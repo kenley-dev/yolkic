@@ -67,6 +67,7 @@ int main() {
             moveTopCapsuleMotor(-75);
 
             // even in failure, the egg count decreases by one, and the status of eggs left is printed
+            eggCount -= 1;
             Brain.Screen.clearScreen();
             Brain.Screen.setCursor(1, 1);
             Brain.Screen.print("Eggs left: %d", eggCount);

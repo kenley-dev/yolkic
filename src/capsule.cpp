@@ -41,7 +41,8 @@ void moveTopCapsuleMotor(float angle) {
 
     while (capsuleTopMotor.position(degrees) > angle){eStopActivated();}
 
-    capsuleTopMotor.stop(brake);
+    capsuleTopMotor.stop(hold);
+    capsuleBottomMotor.stop(hold); // holds the position of the bottom capsule motor so that heavy eggs don't spin it
 
   } else {
 
@@ -49,7 +50,8 @@ void moveTopCapsuleMotor(float angle) {
 
     while(capsuleTopMotor.position(degrees) < angle){eStopActivated();}
 
-    capsuleTopMotor.stop(brake);
+    capsuleTopMotor.stop(hold);
+    capsuleBottomMotor.stop(hold); // holds the position of the bottom capsule motor so that heavy eggs don't spin it
 
   }
 }
@@ -64,7 +66,7 @@ void moveBottomCapsuleMotor(float angle) {
 
     while (capsuleBottomMotor.position(degrees) > angle){eStopActivated();}
 
-    capsuleBottomMotor.stop(brake);
+    capsuleBottomMotor.stop(hold);
 
   } else {
 
@@ -72,7 +74,7 @@ void moveBottomCapsuleMotor(float angle) {
 
     while(capsuleBottomMotor.position(degrees) < angle){eStopActivated();}
 
-    capsuleBottomMotor.stop(brake);
+    capsuleBottomMotor.stop(hold);
 
   }
 }

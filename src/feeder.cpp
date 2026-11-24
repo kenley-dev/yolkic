@@ -2,34 +2,36 @@
 #include "feeder.h"
 #include "config.h"
 
-// A function to close the feeder
-void closeFeeder() {
+void openFeeder() {
 
-    feederMotor.resetPosition();
     feederTimer.clear();
+    while (feederTimer.time(seconds) <= FEEDER_INTERVAL) { eStopActivated(); }
 
-    // quarter of a second time interval for estop to be registered
-    while (feederTimer.time(seconds) <= FEEDER_INTERVAL){eStopActivated();} 
+    // fast approach
+    feederMotor.spin(forward, 15, percent);
+    while (feederMotor.position(degrees) <= 55) { eStopActivated(); }
 
-    feederMotor.spin(reverse, 15, percent);
-
-    while (feederMotor.position(degrees) >= -70) {eStopActivated();}
+    // slow creep to the target to reduce overshoot
+    feederMotor.spin(forward, 8, percent);
+    while (feederMotor.position(degrees) <= 70) { eStopActivated(); }
 
     feederMotor.stop(hold);
 
 }
 
-// A function to open the feeder 80 degrees
-void openFeeder() {
+// A function to close the feeder
+void closeFeeder() {
 
-    feederMotor.resetPosition();
     feederTimer.clear();
+    while (feederTimer.time(seconds) <= FEEDER_INTERVAL) { eStopActivated(); }
 
-    while (feederTimer.time(seconds) <= FEEDER_INTERVAL) {eStopActivated();}
+    // fast approach
+    feederMotor.spin(reverse, 15, percent);
+    while (feederMotor.position(degrees) >= 15) { eStopActivated(); }
 
-    feederMotor.spin(forward, 15, percent);
-
-    while(feederMotor.position(degrees) <= 80) {eStopActivated();}
+    // slow creep to the target to reduce overshoot
+    feederMotor.spin(reverse, 8, percent);
+    while (feederMotor.position(degrees) >= 0) { eStopActivated(); }
 
     feederMotor.stop(hold);
 
@@ -38,17 +40,21 @@ void openFeeder() {
 // A function to jitter the feeder platform so as to release only one egg
 void jitterFeeder() {
 
+    // go up to 110 degrees
     feederMotor.spin(forward, 10, percent);
+    while (feederMotor.position(degrees) <= 110) { eStopActivated(); }
 
-    while(feederMotor.position(degrees) <= 90) {eStopActivated();};
-
-    feederMotor.stop(hold);
+    feederMotor.stop(brake);
 
     wait(0.1, seconds);
 
+    // fast return toward 70
     feederMotor.spin(reverse, 30, percent);
+    while (feederMotor.position(degrees) >= 85) { eStopActivated(); }
 
-    while(feederMotor.position(degrees) >= 70) {eStopActivated();}
+    // slow creep to the target to reduce overshoot
+    feederMotor.spin(reverse, 8, percent);
+    while (feederMotor.position(degrees) >= 70) { eStopActivated(); }
 
     feederMotor.stop(hold);
 
@@ -57,12 +63,12 @@ void jitterFeeder() {
 // A function that automates the release of a singular egg
 void releaseEgg() {
 
-  openFeeder();
+    openFeeder();
 
-  wait(1, seconds);
+    wait(1, seconds);
 
-  jitterFeeder();
+    jitterFeeder();
 
-  closeFeeder();
+    closeFeeder();
 
 }
