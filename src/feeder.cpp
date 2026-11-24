@@ -9,11 +9,11 @@ void openFeeder() {
 
     // fast approach
     feederMotor.spin(forward, 15, percent);
-    while (feederMotor.position(degrees) <= 55) { eStopActivated(); }
+    while (feederMotor.position(degrees) <= 25) { eStopActivated(); }
 
     // slow creep to the target to reduce overshoot
     feederMotor.spin(forward, 8, percent);
-    while (feederMotor.position(degrees) <= 70) { eStopActivated(); }
+    while (feederMotor.position(degrees) <= 40) { eStopActivated(); }
 
     feederMotor.stop(hold);
 
@@ -27,11 +27,11 @@ void closeFeeder() {
 
     // fast approach
     feederMotor.spin(reverse, 15, percent);
-    while (feederMotor.position(degrees) >= 45) { eStopActivated(); }
+    while (feederMotor.position(degrees) >= 15) { eStopActivated(); }
 
     // slow creep to the target to reduce overshoot
     feederMotor.spin(reverse, 8, percent);
-    while (feederMotor.position(degrees) >= 30) { eStopActivated(); }
+    while (feederMotor.position(degrees) >= 0) { eStopActivated(); }
 
     feederMotor.stop(hold);
 
@@ -42,7 +42,7 @@ void jitterFeeder() {
 
     // go up to 95 degrees
     feederMotor.spin(forward, 10, percent);
-    while (feederMotor.position(degrees) <= 95) { eStopActivated(); }
+    while (feederMotor.position(degrees) <= 65) { eStopActivated(); }
 
     feederMotor.stop(brake);
 
@@ -50,11 +50,11 @@ void jitterFeeder() {
 
     // fast return toward 70
     feederMotor.spin(reverse, 30, percent);
-    while (feederMotor.position(degrees) >= 85) { eStopActivated(); }
+    while (feederMotor.position(degrees) >= 55) { eStopActivated(); }
 
     // slow creep to the target to reduce overshoot
     feederMotor.spin(reverse, 8, percent);
-    while (feederMotor.position(degrees) >= 70) { eStopActivated(); }
+    while (feederMotor.position(degrees) >= 40) { eStopActivated(); }
 
     feederMotor.stop(hold);
 
