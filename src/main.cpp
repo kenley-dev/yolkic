@@ -24,7 +24,6 @@ int main() {
     
     // Tracks the number of eggs placed into the feeder, the program will not proceed
     // further until the user has finsihed loading eggs and tapped the touch led
-    feederMotor.stop(hold); // Hold the feeder motor in place whiel eggs are being loaded
     countEggs(eggCount);
 
     // Informs the user that they have finished loading their eggs and that the cracking will begin

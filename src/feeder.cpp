@@ -27,11 +27,11 @@ void closeFeeder() {
 
     // fast approach
     feederMotor.spin(reverse, 15, percent);
-    while (feederMotor.position(degrees) >= 15) { eStopActivated(); }
+    while (feederMotor.position(degrees) >= 45) { eStopActivated(); }
 
     // slow creep to the target to reduce overshoot
     feederMotor.spin(reverse, 8, percent);
-    while (feederMotor.position(degrees) >= 0) { eStopActivated(); }
+    while (feederMotor.position(degrees) >= 30) { eStopActivated(); }
 
     feederMotor.stop(hold);
 

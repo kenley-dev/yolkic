@@ -1,5 +1,6 @@
 #include "vex.h"
 #include "counter.h"
+#include "feeder.h"
 #include "config.h"
 
 // Versitle function that takes a variable as a reference and tracks the number of eggs placed into the feeder
@@ -7,6 +8,8 @@ void countEggs(int& eggCount) {
 
     while (!touchSensor.pressing()) {
         
+        feederMotor.stop(hold); // Hold the feeder motor in place before eggs are being loaded
+
         if (counterBumper.pressing()) {
             eggCount++;
 
