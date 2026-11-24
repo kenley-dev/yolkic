@@ -41,7 +41,7 @@ int main() {
     while (!allEggsCracked(eggCount)) {
         
         // opens the egg capsule
-        moveTopCapsuleMotor(75);
+        moveTopCapsuleMotor(85);
 
         // releases one egg from the feeder
         releaseEgg();
@@ -49,7 +49,7 @@ int main() {
         // checks if an egg has been properly placed in the capsule
         if (checkCapsuleState()) {
             // if it has, the capsule closes to securly hold the egg in place
-            moveTopCapsuleMotor(-75);
+            moveTopCapsuleMotor(-85);
 
             // the egg is cracked
             crackEgg();
@@ -65,7 +65,7 @@ int main() {
 
         } else {
             // otherwise, reset the position of the capsule to prepare for the next egg
-            moveTopCapsuleMotor(-75);
+            moveTopCapsuleMotor(-85);
 
             // even in failure, the egg count decreases by one, and the status of eggs left is printed
             eggCount -= 1;
