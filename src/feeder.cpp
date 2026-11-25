@@ -2,6 +2,8 @@
 #include "feeder.h"
 #include "config.h"
 
+// This entire cpp file has to be reconstructed to allow for multi egg fucntionality to work
+
 void openFeeder() {
 
     feederTimer.clear();
