@@ -13,8 +13,8 @@ bool checkCapsuleState() {
         
         wait(1, seconds);
 
-        // Checks for a white egg with a hue range of 10 to 30
-        if (capsuleOptical.hue() >= 10 && capsuleOptical.hue() <= 30) { 
+        // Checks for a white egg with a hue range of 35 to 45
+        if (capsuleOptical.hue() >= 35 && capsuleOptical.hue() <= 45) { 
             Brain.Screen.print("Object detected!");
             return true;
 
