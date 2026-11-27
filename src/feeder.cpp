@@ -44,7 +44,7 @@ void jitterFeeder() {
 
     // go up to 65 degrees
     feederMotor.spin(forward, 10, percent);
-    while (feederMotor.position(degrees) <= 75) { eStopActivated(); }
+    while (feederMotor.position(degrees) <= 60) { eStopActivated(); }
 
     feederMotor.stop(brake);
 
@@ -52,7 +52,7 @@ void jitterFeeder() {
 
     // fast return toward 55
     feederMotor.spin(reverse, 30, percent);
-    while (feederMotor.position(degrees) >= 55) { eStopActivated(); }
+    while (feederMotor.position(degrees) >= 50) { eStopActivated(); }
 
     // slow creep to the target to reduce overshoot
     feederMotor.spin(reverse, 8, percent);

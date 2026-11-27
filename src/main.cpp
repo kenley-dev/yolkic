@@ -75,7 +75,9 @@ int main() {
 
     }
 
-    // once all eggs have been cracked, all motors will stop and the program will be terminated
+    /** once all eggs have been cracked, there will be a sound played to alert the user that all eggs have been cracked
+    Then all motors will stop and the program will be terminated */
+    Brain.playSound(siren);
     stopAllMotors();
     Brain.programStop();
 
