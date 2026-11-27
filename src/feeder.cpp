@@ -9,13 +9,9 @@ void openFeeder() {
     feederTimer.clear();
     while (feederTimer.time(seconds) <= FEEDER_INTERVAL) { eStopActivated(); }
 
-    // fast approach
-    feederMotor.spin(forward, 15, percent);
-    while (feederMotor.position(degrees) <= 25) { eStopActivated(); }
-
     // slow creep to the target to reduce overshoot
     feederMotor.spin(forward, 8, percent);
-    while (feederMotor.position(degrees) <= 40) { eStopActivated(); }
+    while (feederMotor.position(degrees) <= 25) { eStopActivated(); }
 
     feederMotor.stop(hold);
 
@@ -42,7 +38,7 @@ void closeFeeder() {
 // A function to jitter the feeder platform so as to release only one egg
 void jitterFeeder() {
 
-    // go up to 65 degrees
+    // go up to 60 degrees
     feederMotor.spin(forward, 10, percent);
     while (feederMotor.position(degrees) <= 60) { eStopActivated(); }
 
@@ -50,13 +46,13 @@ void jitterFeeder() {
 
     wait(0.1, seconds);
 
-    // fast return toward 55
+    // fast return toward 25
     feederMotor.spin(reverse, 30, percent);
-    while (feederMotor.position(degrees) >= 50) { eStopActivated(); }
+    while (feederMotor.position(degrees) >= 25) { eStopActivated(); }
 
     // slow creep to the target to reduce overshoot
     feederMotor.spin(reverse, 8, percent);
-    while (feederMotor.position(degrees) >= 45) { eStopActivated(); }
+    while (feederMotor.position(degrees) >= 20) { eStopActivated(); }
 
     feederMotor.stop(hold);
 
